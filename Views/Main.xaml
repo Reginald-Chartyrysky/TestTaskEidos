@@ -1,0 +1,65 @@
+﻿<Window x:Class="TestTaskForEidos.Views.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestTaskForEidos.Views"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+        xmlns:vm="clr-namespace:TestTaskForEidos.ViewModels"
+        mc:Ignorable="d"
+        Title="Main" Height="450" Width="800" ResizeMode="NoResize">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="Delete" Command="{Binding DeleteCommand}"/>
+        <KeyBinding Key="Backspace" Command="{Binding DeleteCommand}"/>
+    </Window.InputBindings>
+
+    <Grid>
+        <ComboBox ItemsSource="{Binding DepartmentList}" SelectedItem="{Binding SelectedDepartment}" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" Width="169" Height="20"/>
+        <Button Command="{Binding AddDepartmentCommand}" Content="Add" HorizontalAlignment="Left" Margin="184,32,0,0" VerticalAlignment="Top" Width="83"/>
+        <ListBox ItemsSource="{Binding SelectedDepartment.Employees, Mode=OneWay, NotifyOnSourceUpdated=True}" SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}" Margin="26,161,516,56">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1} {2}">
+
+                                <Binding Path="Role"/>
+                                <Binding Path="Surname"/>
+                                <Binding Path="Name"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding EdditEmployeeCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
+
+        <ListBox ItemsSource="{Binding SelectedDepartment.Offices, Mode=OneWay, NotifyOnSourceUpdated=True}" SelectedItem="{Binding SelectedOffice, Mode=TwoWay}" Margin="455,166,88,51">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding EdditOfficeCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
+        <Button Command="{Binding AddEmployeeCommand}" Content="Add" HorizontalAlignment="Left" Margin="26,383,0,0" VerticalAlignment="Top" Width="258"/>
+        <Button Command="{Binding AddOfficeCommand}" Content="Add" HorizontalAlignment="Left" Margin="455,388,0,0" VerticalAlignment="Top" Width="257"/>
+        <TextBox Text="{Binding SelectedDepartment.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="10,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Height="24"/>
+        <Button Command="{Binding OpenJsonCommand}" Content="JSON" HorizontalAlignment="Left" Margin="679,37,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="26,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            Список сотрудников <LineBreak/>
+            Чтобы изменить, щелкните дважды по сотруднику<LineBreak/>
+            Чтобы удалить, нажмите Del или BackSpace
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="455,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Список офисов"/><LineBreak/><Run Text="Чтобы изменить, щелкните дважды по офису"/><LineBreak/><Run Text="Чтобы удалить, нажмите Del или BackSpace"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="331,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Выглядит все, конечно, не очень"/><LineBreak/><Run Text="Но я это делал во время перерывов на работе, пф"/><LineBreak/><Run Text="Стоит такие задачи давать в выходные..."/></TextBlock>
+
+    </Grid>
+</Window>

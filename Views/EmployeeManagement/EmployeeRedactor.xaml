@@ -1,0 +1,31 @@
+﻿<Window x:Class="TestTaskForEidos.Views.EmployeeManagement.EmployeeRedactor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestTaskForEidos.Views.EmployeeManagement"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+        mc:Ignorable="d"
+        Title="EmployeeRedactor" Height="243" Width="210" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+    <Grid >
+        <StackPanel VerticalAlignment="Center" Margin="10">
+
+            <TextBlock Text="Должность"  Width="120"></TextBlock>
+            <TextBox HorizontalAlignment="Center" Height="23"  TextWrapping="Wrap" Text="{Binding Employee.Role}" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Text="Фамилия"  Width="120"></TextBlock>
+            <TextBox HorizontalAlignment="Center" Height="23"  TextWrapping="Wrap" Text="{Binding Employee.Surname}" VerticalAlignment="Top" Width="120"/>
+            
+            <TextBlock Text="Имя"  Width="120"></TextBlock>
+            <TextBox HorizontalAlignment="Center" Height="23"  TextWrapping="Wrap" Text="{Binding Employee.Name}" VerticalAlignment="Top" Width="120"/>
+
+     
+
+            <TextBlock Text="Зарплата"  Width="120"></TextBlock>
+            <TextBox HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="{Binding Employee.Salary}" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Text="Отдел"  Width="120"></TextBlock>
+            <ComboBox HorizontalAlignment="Center" ItemsSource="{Binding Departments}" DisplayMemberPath="Name" SelectedItem="{Binding CurrentDepartment, Mode=TwoWay}"  Width="120">
+
+            </ComboBox>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,17 @@
+﻿<Window x:Class="TestTaskForEidos.Views.DepartmentManagement.AddDepartment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestTaskForEidos.Views.DepartmentManagement"
+        mc:Ignorable="d"
+        Title="AddDepartment" Height="117" Width="179" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+    <Grid>
+        <StackPanel Margin="5" VerticalAlignment="Center">
+            <TextBlock Text="Название департамента" Height="23"  Width="138"></TextBlock>
+            <TextBox Text="{Binding Department.Name}"  TextWrapping="Wrap" Height="23"  Width="138"/>
+            <Button Command="{Binding SaveDepartmentCommand}" Content="Add" HorizontalAlignment="Center"  Height="23" Width="138"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
